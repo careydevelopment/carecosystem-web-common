@@ -2,6 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>us.careydevelopment.web</groupId>
     <artifactId>carecosystem-web-common</artifactId>
+    <url>https://github.com/careydevelopment/carecosystem-web-common</url>
     <name>CarEcosystem Web Common</name>
     <description>Common classes for CarEcosystem web properties</description>
     <version>1.0.0-RELEASE</version>
