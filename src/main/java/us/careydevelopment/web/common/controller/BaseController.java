@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import us.careydevelopment.web.common.util.SecurityUtil;
 
@@ -21,6 +22,12 @@ public abstract class BaseController {
     @Autowired
     private SecurityUtil securityUtil;
 
+    
+    @GetMapping("/error")
+    public String handleError() {
+        return "error";
+    }
+    
     
     protected void setCommon(Model model, String jwtToken) {
         handleAssetsBase(model);
