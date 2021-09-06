@@ -53,8 +53,10 @@ public abstract class BaseController {
         
         if (SecurityUtil.ANONYMOUS_USER_NAME.equals(user)) {
             model.addAttribute("anonymousUser", true);
+            model.addAttribute("isAdmin", false);
         } else {
             model.addAttribute("username", user);
+            model.addAttribute("isAdmin", securityUtil.isAdmin(jwtToken));
         }
     }
 }
