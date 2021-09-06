@@ -41,6 +41,10 @@ public class JwtUtil {
         return (String)claims.get(name);
     }
         
+    public List<String> getAuthoritiesFromToken(String token) {
+        Claims claims = getAllClaimsFromToken(token);
+        return getAuthorities(claims);
+    }
         
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
