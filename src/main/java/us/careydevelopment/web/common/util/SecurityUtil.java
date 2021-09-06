@@ -51,22 +51,24 @@ public class SecurityUtil {
     public boolean isAdmin(String jwtToken) {
         boolean isAdmin = false;
         
-        try {
-            List<String> authorities = jwtUtil.getAuthoritiesFromToken(jwtToken);
-            LOG.debug("User authorities is " + authorities);
-            
-            if (authorities != null) {
-                for (String auth : VALID_ADMIN_AUTHORITIES) {
-                    if (authorities.contains(auth)) {
-                        LOG.debug("User is admin");
-                        
-                        isAdmin = true;
-                        break;
+        if (!StringUtils.isBlank(jwtToken)) {
+            try {
+                List<String> authorities = jwtUtil.getAuthoritiesFromToken(jwtToken);
+                LOG.debug("User authorities is " + authorities);
+                
+                if (authorities != null) {
+                    for (String auth : VALID_ADMIN_AUTHORITIES) {
+                        if (authorities.contains(auth)) {
+                            LOG.debug("User is admin");
+                            
+                            isAdmin = true;
+                            break;
+                        }
                     }
                 }
+            } catch (Exception e) {
+                LOG.error("Problem trying to retrieve authorities for user!", e);
             }
-        } catch (Exception e) {
-            LOG.error("Problem trying to retrieve authorities for user!", e);
         }
         
         return isAdmin;
